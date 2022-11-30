@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton';
-import * as dat from 'dat.gui';
 
 interface Params {
     domElement: Element | null,
@@ -13,7 +12,7 @@ export default class Webgl {
 
     constructor(param: Params) {
         this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
-        this.camera.position.set(0, 1.6, 0);
+        this.camera.position.set(0, 0, 0);
 
         this.scene = new THREE.Scene();
 
@@ -21,11 +20,14 @@ export default class Webgl {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
 
         param.domElement?.appendChild(this.renderer.domElement);
+
+        this.init();
     }
 
     init() {
-        this.initScene();
         this.setupVR();
+
+        this.addRoom();
         this.addLight();
 
         window.addEventListener('resize', this.resize.bind(this));
@@ -33,8 +35,16 @@ export default class Webgl {
         this.renderer.setAnimationLoop(this.render.bind(this));
     }
 
-    initScene() {
+    addRoom() {
+        const room = new THREE.Mesh(
+            new THREE.BoxGeometry(40, 25, 30, 1, 1, 1),
+            new THREE.MeshStandardMaterial({
+                color: '#CCC',
+                side: THREE.DoubleSide,
+            })
+        )
 
+        this.scene.add(room);
     }
 
     setupVR() {
@@ -54,8 +64,7 @@ export default class Webgl {
     addLight() {
         const hemiLight = new THREE.HemisphereLight(0xffffff, 0x404040);
 
-        const light = new THREE.DirectionalLight(0xffffff);
-        light.position.set(1, 1, 1).normalize();
+        const light = new THREE.DirectionalLight(0xffffff, 0.8);
 
         this.scene.add(light, hemiLight);
     }
