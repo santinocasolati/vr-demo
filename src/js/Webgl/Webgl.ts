@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton';
 
+import { Physics } from './Physics/Physics';
+
 interface Params {
     domElement: Element | null,
 }
@@ -9,12 +11,14 @@ export default class Webgl {
     scene: THREE.Scene;
     renderer: THREE.WebGLRenderer;
     camera: THREE.PerspectiveCamera;
+    physics: Physics;
 
     constructor(param: Params) {
         this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
         this.camera.position.set(0, 0, 0);
 
         this.scene = new THREE.Scene();
+        this.physics = new Physics();
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -78,6 +82,7 @@ export default class Webgl {
     }
 
     render() {
+        this.physics.update();
 
         this.renderer.render(this.scene, this.camera);
     }
