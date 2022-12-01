@@ -37,12 +37,14 @@ export default class Webgl {
 
     addRoom() {
         const room = new THREE.Mesh(
-            new THREE.BoxGeometry(40, 25, 30, 1, 1, 1),
+            new THREE.PlaneGeometry(100, 100, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: '#CCC',
                 side: THREE.DoubleSide,
             })
-        )
+        );
+
+        room.rotation.x = -Math.PI / 2;
 
         this.scene.add(room);
     }
