@@ -1,7 +1,5 @@
 import '../scss/app.scss';
 
-
-import ReactSetup from "./ReactSetup/ReactSetup";
 import Webgl from "./Webgl/Webgl";
 
 declare global {
@@ -13,14 +11,9 @@ declare global {
 export default class Site {
 
   constructor() {
-    this.setReact();
     this.setWebgl();
     this.resize();
     this.setResize();
-  }
-
-  setReact() {
-    new ReactSetup();
   }
 
   setWebgl() {
