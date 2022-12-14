@@ -1,0 +1,292 @@
+/*!******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/app.scss ***!
+  \******************************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap);
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/app.scss (1) ***!
+  \**********************************************************************************************************************************************************/
+/* Mixins */
+/**
+ * Font Responsive
+ *
+ * @param {number} $minFontSize - Min font size
+ * @param {number} $maxFontSize - Max font size
+ * @param {number} $minViewport - Min viewport size
+ * @param {number} $maxViewport - Max viewport size
+ */
+/* Core styles */
+* {
+  outline: 0;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+input[type=submit] {
+  -webkit-appearance: none;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: middle;
+  background: transparent;
+  text-decoration: none;
+}
+
+html {
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+strong {
+  font-weight: 500;
+  vertical-align: baseline;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  text-align: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  color: inherit;
+}
+
+/*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.o-scroll {
+  width: 100%;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10px;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  -webkit-transform-origin: center right;
+          transform-origin: center right;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: opacity 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  -webkit-transform: scaleX(1.6);
+          transform: scaleX(1.6);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  opacity: 2;
+  width: 10px;
+  border-radius: 0;
+  margin: 0;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+body {
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.o-scroll {
+  width: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Components */
+#webgl-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+#webgl-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.button-container {
+  position: relative;
+  z-index: 200;
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: red;
+}
+.button-container button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  border: 1px solid #FFF;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 30px;
+  color: #FFF;
+  opacity: 0.5;
+}
