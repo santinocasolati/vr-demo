@@ -48,7 +48,7 @@ export default class Webgl {
 
         this.textureloader = new TextureLoader();
 
-        this.ballTexture = this.textureloader.load('/static/textures/ball.jpg');
+        this.ballTexture = this.textureloader.load('./static/textures/ball.jpg');
         this.ballTexture.wrapS = THREE.RepeatWrapping;
         this.ballTexture.wrapT = THREE.RepeatWrapping;
 
@@ -137,7 +137,7 @@ export default class Webgl {
     }
 
     addRoom() {
-        const texture = this.textureloader.load('/static/textures/floor.jpg');
+        const texture = this.textureloader.load('./static/textures/floor.jpg');
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(100, 100);
