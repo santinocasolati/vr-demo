@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton';
+import { TextureLoader } from 'three';
 import { gsap } from 'gsap';
 
 import { Physics } from './Physics/Physics';
@@ -23,6 +24,8 @@ export default class Webgl {
     raycaster: THREE.Raycaster;
     hovering: HoverArray | null;
     prevHovering: HoverArray | null;
+    textureloader: TextureLoader;
+    ballTexture: THREE.Texture;
 
     constructor(param: Params) {
         this.playing = false;
@@ -42,6 +45,12 @@ export default class Webgl {
         this.raycaster = new THREE.Raycaster();
         this.hovering = null;
         this.prevHovering = null;
+
+        this.textureloader = new TextureLoader();
+
+        this.ballTexture = this.textureloader.load('/static/textures/ball.jpg');
+        this.ballTexture.wrapS = THREE.RepeatWrapping;
+        this.ballTexture.wrapT = THREE.RepeatWrapping;
 
         this.init();
     }
@@ -82,7 +91,7 @@ export default class Webgl {
         });
 
         document.querySelector('.button-container')?.appendChild(VRButton.createButton(this.renderer));
-        
+
         setTimeout(() => {
             document.querySelector('#VRButton').style = '';
         }, 500);
@@ -123,16 +132,22 @@ export default class Webgl {
                 this.crosshair.scale.set(1, 1, 1);
             }
         });
-        this.hoverAnim.fromTo(this.crosshair.scale, {x: 1, y: 1, z: 1}, { x: 0, y: 0, z: 0 }, 0);
+        this.hoverAnim.fromTo(this.crosshair.scale, { x: 1, y: 1, z: 1 }, { x: 0, y: 0, z: 0 }, 0);
         this.hoverAnim.pause();
     }
 
     addRoom() {
+        const texture = this.textureloader.load('/static/textures/floor.jpg');
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(100, 100);
+
         const room = new THREE.Mesh(
             new THREE.PlaneGeometry(1000, 1000, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: '#CCC',
                 side: THREE.DoubleSide,
+                map: texture
             })
         );
 
@@ -162,7 +177,7 @@ export default class Webgl {
     addCollItem() {
         const mesh = new THREE.Mesh(
             new THREE.SphereGeometry(1, 20, 20),
-            new THREE.MeshStandardMaterial({color: 'green'}));
+            new THREE.MeshStandardMaterial({ map: window.webgl.ballTexture }));
 
         mesh.scale.set(0.5, 0.5, 0.5);
 
@@ -204,7 +219,7 @@ export default class Webgl {
         });
     }
 
-    checkStillHover(that:any) {    
+    checkStillHover(that: any) {
         if (that.playing) {
             if (that.hovering == that.prevHovering && that.hovering != null) {
                 that.crosshair.material.color = new THREE.Color("white");
