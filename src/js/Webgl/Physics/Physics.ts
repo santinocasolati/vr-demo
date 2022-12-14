@@ -11,7 +11,7 @@ export class Physics {
     world: CANNON.World;
     defaultMaterial: CANNON.Material;
     groundMaterial: CANNON.Material;
-    physicsArray: {mesh: THREE.Mesh, body: CANNON.Body}[];
+    physicsArray: { mesh: THREE.Mesh, body: CANNON.Body }[];
 
     constructor() {
         this.world = new CANNON.World({ gravity: new CANNON.Vec3(0, -9.82, 0) });
@@ -63,7 +63,7 @@ export class Physics {
         this.world.addBody(groundBody);
     }
 
-    addItemBox(mesh:THREE.Mesh, bounds:Bounds, mass:number) {
+    addItemBox(mesh: THREE.Mesh, bounds: Bounds, mass: number) {
         const body = new CANNON.Body({
             shape: new CANNON.Box(new CANNON.Vec3(bounds.x * 0.5, bounds.y * 0.5, bounds.z * 0.5)),
             mass: mass,
@@ -72,7 +72,24 @@ export class Physics {
         });
 
         this.world.addBody(body);
-        this.physicsArray.push({mesh: mesh, body: body});
+        this.physicsArray.push({ mesh: mesh, body: body });
+    }
+
+    createSphere(mesh: THREE.Mesh) {
+        const shape = new CANNON.Sphere(0.5);
+        const body = new CANNON.Body({
+            mass: 1,
+            position: new CANNON.Vec3(mesh.position.x, mesh.position.y, mesh.position.z),
+            shape: shape,
+            material: this.defaultMaterial,
+        });
+
+        this.world.addBody(body);
+
+        this.physicsArray.push({
+            mesh: mesh,
+            body: body
+        })
     }
 
     update() {

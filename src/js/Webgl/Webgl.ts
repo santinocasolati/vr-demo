@@ -129,7 +129,7 @@ export default class Webgl {
 
     addRoom() {
         const room = new THREE.Mesh(
-            new THREE.PlaneGeometry(100, 100, 1, 1),
+            new THREE.PlaneGeometry(1000, 1000, 1, 1),
             new THREE.MeshStandardMaterial({
                 color: '#CCC',
                 side: THREE.DoubleSide,
@@ -150,15 +150,26 @@ export default class Webgl {
         this.hoverElems.push(
             {
                 mesh: interruptor,
-                action: function () {
-                    console.log('hover');
-                }
+                action: this.addCollItem
             }
         )
 
         interruptor.position.set(0, 0, -2);
 
         this.scene.add(interruptor);
+    }
+
+    addCollItem() {
+        const mesh = new THREE.Mesh(
+            new THREE.SphereGeometry(1, 20, 20),
+            new THREE.MeshStandardMaterial({color: 'green'}));
+
+        mesh.scale.set(0.5, 0.5, 0.5);
+
+        window.webgl.scene.add(mesh);
+        mesh.position.set(0 + Math.random(), 10, -20);
+
+        window.webgl.physics.createSphere(mesh);
     }
 
     addLight() {
